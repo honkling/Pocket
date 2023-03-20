@@ -18,10 +18,26 @@ var gui = GUI(
 )
 ```
 
+# Different Inventory Types
+
+You can specify the type of inventory after the title.
+
+```kt
+var gui = GUI(
+    plugin,
+    """
+    xabcx
+    """,
+    "Example GUI",
+    InventoryType.HOPPER
+)
+```
+
 # Placing Items
 
 You can dictate the format of your GUI with the template specified in your constructor.<br>
-All you need to do after constructing, is specify what item is which character.
+All you need to do after constructing, is specify what item is which character.<br>
+Note that any characters in the template will be filled in with air if a substite is not specified.
 
 ```kt
 gui = gui
