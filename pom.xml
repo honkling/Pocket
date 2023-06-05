@@ -126,7 +126,7 @@
         <dependency>
             <groupId>com.github.honkling</groupId>
             <artifactId>commando</artifactId>
-            <version>542af0df7b</version>
+            <version>de8a7871bc</version>
         </dependency>
     </dependencies>
 </project>
