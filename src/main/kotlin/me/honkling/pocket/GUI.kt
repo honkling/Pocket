@@ -117,7 +117,7 @@ class GUI(
 
                 onClose[inventory]?.invoke(cancellable)
 
-                if (!cancellable.isCancelled) {
+                if (!cancellable.isEventCancelled) {
                     InventoryClickEvent.getHandlerList().unregister(this)
                     InventoryCloseEvent.getHandlerList().unregister(this)
                     return

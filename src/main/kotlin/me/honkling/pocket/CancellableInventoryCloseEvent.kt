@@ -5,13 +5,13 @@ import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.InventoryView
 
 class CancellableInventoryCloseEvent(transaction: InventoryView) : InventoryCloseEvent(transaction), Cancellable {
-    var cancelled = false
+    var isEventCancelled = false
 
     override fun isCancelled(): Boolean {
-        return cancelled
+        return isEventCancelled
     }
 
     override fun setCancelled(cancel: Boolean) {
-        cancelled = cancel
+        isEventCancelled = cancel
     }
 }
