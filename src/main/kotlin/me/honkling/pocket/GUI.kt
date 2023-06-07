@@ -11,7 +11,7 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.Plugin
 
-class GUI(
+open class GUI(
     val plugin: Plugin,
     val template: String,
     val title: String,
