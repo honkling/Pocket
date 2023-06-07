@@ -60,7 +60,7 @@ class GUI(
         return this
     }
 
-    fun open(player: Player, onClose: CloseHandler = { true }) {
+    fun open(player: Player, onClose: CloseHandler = {}) {
         val rows = template
             .trimIndent()
             .split("\n")
