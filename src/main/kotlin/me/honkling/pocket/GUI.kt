@@ -60,7 +60,7 @@ class GUI(
         return this
     }
 
-    fun open(player: Player, onClose: CloseHandler = {}) {
+    fun open(player: Player, onClose: CloseHandler = { true }) {
         val rows = template
             .trimIndent()
             .split("\n")
@@ -90,7 +90,8 @@ class GUI(
         registerListeners(inventory)
     }
 
-    private fun registerListeners(inventory: Inventory) {
+    private fun registerListeners(immutableInventory: Inventory) {
+        var inventory = immutableInventory
         val pluginManager = Bukkit.getPluginManager()
 
         pluginManager.registerEvents(object : Listener {
@@ -109,13 +110,21 @@ class GUI(
 
             @EventHandler
             fun onInventoryClose(e: InventoryCloseEvent) {
-                if (e.inventory != inventory)
+                val cancellable = CancellableInventoryCloseEvent(e.view)
+
+                if (cancellable.inventory != inventory)
                     return
 
-                onClose[inventory]?.invoke(e)
+                onClose[inventory]?.invoke(cancellable)
 
-                InventoryClickEvent.getHandlerList().unregister(this)
-                InventoryCloseEvent.getHandlerList().unregister(this)
+                if (!cancellable.isCancelled) {
+                    InventoryClickEvent.getHandlerList().unregister(this)
+                    InventoryCloseEvent.getHandlerList().unregister(this)
+                    return
+                }
+
+                e.player.openInventory(inventory)
+                inventory = e.player.openInventory.topInventory
             }
         }, plugin)
     }
