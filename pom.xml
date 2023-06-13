@@ -123,10 +123,5 @@
             <version>${kotlin.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.honkling</groupId>
-            <artifactId>commando</artifactId>
-            <version>de8a7871bc</version>
-        </dependency>
     </dependencies>
 </project>
