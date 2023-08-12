@@ -34,7 +34,7 @@ open class GUI(
         val columns = lines[0].length
 
         if (type == InventoryType.CHEST) {
-            if (rows < 3 || rows > 6)
+            if (rows < 1 || rows > 6)
                 throw IllegalArgumentException("Received chest template with invalid amount of rows ($rows)")
 
             if (columns != 9)
