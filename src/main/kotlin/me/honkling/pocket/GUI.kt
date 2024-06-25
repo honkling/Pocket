@@ -61,6 +61,13 @@ open class GUI(
     }
 
     fun open(player: Player, onClose: CloseHandler = {}) {
+        val inventory = buildInventory()
+        player.openInventory(inventory)
+        this.onClose[inventory] = onClose
+        registerListeners(inventory)
+    }
+
+    fun buildInventory(): Inventory {
         val rows = template
             .trimIndent()
             .split("\n")
@@ -85,9 +92,7 @@ open class GUI(
             onClick[index] = slot.onClick
         }
 
-        player.openInventory(inventory)
-        this.onClose[inventory] = onClose
-        registerListeners(inventory)
+        return inventory
     }
 
     private fun registerListeners(immutableInventory: Inventory) {
