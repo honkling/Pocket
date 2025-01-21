@@ -67,7 +67,7 @@ open class GUI(
         registerListeners(inventory)
     }
 
-    fun buildInventory(): Inventory {
+    open fun buildInventory(): Inventory {
         val rows = template
             .trimIndent()
             .split("\n")
@@ -95,14 +95,14 @@ open class GUI(
         return inventory
     }
 
-    private fun registerListeners(immutableInventory: Inventory) {
+    protected open fun registerListeners(immutableInventory: Inventory) {
         var inventory = immutableInventory
         val pluginManager = Bukkit.getPluginManager()
 
         pluginManager.registerEvents(object : Listener {
             @EventHandler
             fun onInventoryClick(e: InventoryClickEvent) {
-                if (e.inventory != inventory)
+                if (e.clickedInventory != inventory)
                     return
 
                 val slotIndex = e.slot
